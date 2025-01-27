@@ -112,8 +112,6 @@ end(T2)
 - Transactions waiting on a failed site will continue execution until commit time.
 - Recovered sites require a committed write to enable reading of replicated variables.
 
-## Debugging Tools
-- `querystate()` - Outputs the state of the TM, DM, data distribution, and values.
 
 ## Testing and Validation
 - Test with various failure and recovery scenarios.
