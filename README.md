@@ -121,9 +121,9 @@ end(T2)
 
 
 ## Testing and Validation
-- Test with various failure and recovery scenarios.
-- Verify correctness of read and write operations under SSI.
-- Ensure proper handling of abort and commit conditions.
+- Testing is done with various failure and recovery scenarios.
+- Verification of correctness of read and write operations under SSI is required.
+- Assurance of proper handling of abort and commit conditions.
 
 ---
 
