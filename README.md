@@ -13,8 +13,8 @@ This project involves implementing a distributed database system with the follow
 - Variables are distributed across **10 sites** (`1 to 10`).
 
 ### Replication
-- **Odd-indexed variables** are stored on one site only, determined as `1 + (index number mod 10)`.
-- **Even-indexed variables** are replicated across all sites.
+- **Odd-indexed variables (non-replicated)** are stored on one site only, determined as `1 + (index number mod 10)`.
+- **Even-indexed variables (replicated)** are replicated across all sites.
 - Example: `x3` and `x13` are stored on **site 4**.
 
 ### Initialization
