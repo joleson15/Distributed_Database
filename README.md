@@ -3,13 +3,13 @@
 ## Replicated Concurrency Control and Recovery (RepCRec)
 
 ## To Run:
-Run **make RepCRec** to compile, output will be file called **RepCRec**. 
+Run `make RepCRec` to compile, output will be file called `RepCRec`. 
 The program can then be run in multiple ways:
- - usage: **./RepCRec <testCase.txt>**. Replacing "testCase" with the name of the test (i.e. test1).
- - usage: **./RepCRec** accepts standard input line by line. See input instructions below and test cases for examples.
- - usage: **./testCheck.sh** runs a shell script that runs all tests and places the output in **./outputs** in the form of a **.txt** file
+ - usage: `./RepCRec <testCase.txt>`. Replacing "testCase" with the name of the test (i.e. test1).
+ - usage: `./RepCRec` accepts standard input line by line. See input instructions below and test cases for examples.
+ - usage: `./testCheck.sh` runs a shell script that runs all tests and places the output in `./outputs` in the form of a `.txt` file
    
-Code compiles using **gcc version 11.5.0**, written with **C++17**
+Code compiles using `gcc version 11.5.0`, written with `C++17`
 
 
 ### This project involves implementing a distributed database system with the following key features:
@@ -141,6 +141,6 @@ end(T2)
 
 ### Notes
 - Transactions must wait if no site containing the required data is available.
-- A read rom a transaction that begins after the recovery of a site **s** or a replicated variable **x** will not be allowed until a committed write to **x** takes place on **s**
+- A read rom a transaction that begins after the recovery of a site `s` or a replicated variable `x` will not be allowed until a committed write to `x` takes place on `s`
 - Failure scenarios simulate real-world distributed database behavior.
 
