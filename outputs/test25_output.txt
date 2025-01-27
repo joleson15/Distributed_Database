@@ -1,0 +1,18 @@
+x1: 10
+T2 writes to site 1
+T2 writes to site 2
+T2 writes to site 5
+T2 writes to site 6
+T2 writes to site 7
+T2 writes to site 8
+T2 writes to site 9
+T2 writes to site 10
+T1 commits
+x3: 30
+T2 commits
+T4 writes to site 3
+T4 writes to site 4
+T4 commits
+T3 waits for var x8
+x8: 88
+T3 commits
