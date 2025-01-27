@@ -2,8 +2,8 @@
 
 ## Replicated Concurrency Control and Recovery (RepCRec)
 
-## RUNNING INSTRUCTIONS:
-- Run **make RepCRec** to compile, output will be file called **RepCRec**
+## To Run:
+- Run **make RepCRec** to compile, output will be file called **RepCRec**. <br>
 The program can then be run in multiple ways:
  - usage: **./RepCRec <testCase.txt>**. Replacing "testCase" with the name of the test (i.e. test1).
  - usage: **./RepCRec** accepts standard input line by line. See input instructions below and test cases for examples.
