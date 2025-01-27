@@ -1,6 +1,18 @@
 # Distributed Database Implementation
 
-This project involves implementing a distributed database system with the following key features:
+## Replicated Concurrency Control and Recovery (RepCRec)
+
+## RUNNING INSTRUCTIONS:
+- Run **make RepCRec** to compile, output will be file called **RepCRec**
+The program can then be run in multiple ways:
+ - usage: **./RepCRec <testCase.txt>**. Replacing "testCase" with the name of the test (i.e. test1).
+ - usage: **./RepCRec** accepts standard input line by line. See input instructions below and test cases for examples.
+ - usage: **./testCheck.sh** runs a shell script that runs all tests and places the output in **./outputs** in the form of a **.txt** file
+   
+Code compiles using **gcc version 11.5.0**, written with **C++17**
+
+
+### This project involves implementing a distributed database system with the following key features:
 
 - Serializable Snapshot Isolation (SSI)
 - Replication
