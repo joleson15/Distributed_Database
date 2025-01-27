@@ -13,20 +13,24 @@ This project involves implementing a distributed database system with the follow
 - Variables are distributed across **10 sites** (`1 to 10`).
 
 ### Replication
-- **Odd-indexed variables (non-replicated)** are stored on one site only, determined as `1 + (index number mod 10)`.
-- **Even-indexed variables (replicated)** are replicated across all sites.
+- **Odd-indexed variables** are stored on one site only, determined as `1 + (index number mod 10)`.
+- **Even-indexed variables** are replicated across all sites.
 - Example: `x3` and `x13` are stored on **site 4**.
 
 ### Initialization
 - Each variable `xi` is initialized to `10 * i`.
 
+### Time Continuation
+- This project uses a discrete event simulation structure. Each new line in the input means time advances by one, and there will be only one instruction per line.
+
 ### Site Failures
 - Each site maintains its own Serializable Snapshot Isolation information.
-- If a site fails, all of its data is erased.
+- If a site fails, all of its SSI information is erased.
+
 
 ## Algorithms
 
-### Available Copies Approach
+### Available Copies Approach to Serializable Snapshot Isolation
 - **Writes**:
   - Writes can go to available sites.
   - If a site fails after a write but before the transaction commits, the transaction must abort.
@@ -35,18 +39,16 @@ This project involves implementing a distributed database system with the follow
     1. For non-replicated variables: The site holding `xi` is up.
     2. For replicated variables: The site containing `xi` was up from the last commit of `xi` until `T` began.
 
-### Concurrency-Induced Abortions
+### Concurrency-Induced Aborts
 - Detect and handle:
   - **First-committer-wins rule**.
   - **Consecutive Read-Write (RW) edges** forming a cycle in the serialization graph.
-- Transactions should not restart automatically after aborting.
+- Transactions do not restart automatically after aborting.
 
 ### Failure Recovery
 - Upon recovery:
   - Non-replicated variables are available for reads and writes immediately.
   - Replicated variables are available for writing but not reading until a committed write occurs after recovery.
-
-## Instructions
 
 ### Input Format
 - Instructions are read from a file or standard input, one per line.
@@ -58,6 +60,8 @@ This project involves implementing a distributed database system with the follow
   - `end(T1)` - End transaction `T1` and print commit or abort status.
   - `fail(6)` - Site 6 fails.
   - `recover(7)` - Site 7 recovers.
+    
+- Input is to be well defined
 
 ### Output Format
 - **Reads**:
@@ -73,10 +77,13 @@ This project involves implementing a distributed database system with the follow
     site 1 - x2: 6, x3: 2, ... x20: 3
     site 10 - x2: 14, ... x8: 12, x9: 7, ... x20: 3
     ```
-- **Events**:
-  - Indicate transaction aborts due to conflicts or available copies rules.
+- **Wait**:
+  - Example: 'T1 Waits'
+    
+- **Fail/Recover**:
+  - Example: 'Site 7 Fails', 'Site 7 Recovers'.
 
-### Examples
+### Example
 
 #### Partial Script
 ```plaintext
@@ -102,7 +109,7 @@ end(T2)
 1. **Transaction Manager (TM)**
    - Manages read and write requests.
    - Routes requests to appropriate sites.
-   - Tracks site statuses (up/down).
+   - Tracks sites' status (up/down).
    - Ensures SSI and resolves conflicts.
 2. **Data Manager (DM)**
    - Each site has an independent DM.
@@ -122,16 +129,6 @@ end(T2)
 
 ### Notes
 - Transactions must wait if no site containing the required data is available.
-- The program output must align with the specified input and output formats.
-- Failure scenarios must simulate real-world distributed database behavior.
+- A read rom a transaction that begins after the recovery of a site **s** or a replicated variable **x** will not be allowed until a committed write to **x** takes place on **s**
+- Failure scenarios simulate real-world distributed database behavior.
 
----
-
-### Key Considerations
-
-1. **Concurrency Control**: Ensure that SSI is strictly enforced.
-2. **Fault Tolerance**: Plan for scenarios where failures occur mid-transaction.
-3. **Scalability**: Design the system to handle increasing numbers of variables and transactions efficiently.
-4. **Test Coverage**: Create tests for edge cases, including simultaneous site failures and complex transaction conflicts.
-
-By following the implementation guidelines, the project will serve as a robust introduction to distributed database systems while exploring the challenges of maintaining consistency and availability in a multi-node environment.
