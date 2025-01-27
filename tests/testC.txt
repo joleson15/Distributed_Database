@@ -1,0 +1,13 @@
+begin(T1)
+begin(T2)
+begin(T3)
+R(T1,x2)
+W(T2,x2,11) //T1 --rw--> T2
+W(T2,x4,67)
+end(T2)
+W(T3,x4,75) //T2 --ww--> T3
+W(T1,x6,82)
+R(T3,x6) //T3 --rw--> T1
+end(T1)
+end(T3) //T3 aborts because it forms a cycle with 2 consecutive RW edges
+dump()

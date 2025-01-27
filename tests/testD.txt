@@ -1,0 +1,10 @@
+begin(T1)
+begin(T2)
+begin(T3)
+W(T2,x4,9)
+W(T3,x4,76)
+W(T1,x4,25)
+end(T2)
+end(T3) // T3 aborts as T2 commits first (first commiter wins rule)
+end(T1) // T1 aborts, first committer wins rule
+dump()

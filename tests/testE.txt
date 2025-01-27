@@ -1,0 +1,16 @@
+begin(T1)
+begin(T2)
+begin(T3)
+begin(T4)
+R(T2,x5)
+W(T1,x5,77) //T2 --rw--> T1
+R(T1,x7)
+W(T3,x7,11) //T1 --rw--> T3
+R(T3,x1)
+W(T4,x1,800) //T3 --rw--> T4
+R(T4,x6) //does not cause a cycle
+end(T1)
+end(T2)
+end(T3)
+end(T4) //T4 does not abort here
+dump()

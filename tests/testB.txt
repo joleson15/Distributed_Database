@@ -1,0 +1,12 @@
+begin(T1)
+begin(T2)
+begin(T3)
+R(T3,x3)
+fail(4)
+R(T2,x3) //waits for site 4
+W(T1,x5,99)
+recover(4) //T2 reads x3 from site 4
+end(T1)
+end(T2)
+end(T3) //all commit, x5 = 99 at site 6
+dump()
